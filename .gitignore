@@ -48,7 +48,6 @@ Desktop.ini
 data/
 
 # Saídas de treino/execução
-runs/
 logs/
 lightning_logs/
 wandb/
@@ -71,9 +70,10 @@ events.out.tfevents.*
 *.npy
 
 # CSVs de predições/relatórios em saídas
-runs/**/*.csv
+
 
 # Configs locais opcionais
 config/*.local.*
 *.env
 *.env.*
+
