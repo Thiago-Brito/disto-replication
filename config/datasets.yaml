@@ -1,0 +1,56 @@
+# Configuração de datasets para o pipeline DISTO.
+#
+# Cada dataset precisa de um mapper específico que transforme seus campos
+# originais na forma canônica usada aqui:
+#   - article: texto do artigo/contexto
+#   - question: enunciado da questão
+#   - answer: alternativa correta (texto)
+#   - distractors[]: lista de alternativas erradas (textos)
+#
+# Inicialmente, deixamos configurado apenas o RACE com a configuração "all".
+
+race:
+  config: "all"
+  splits:
+    train: "train"
+    validation: "validation"
+    test: "test"
+
+# Placeholders (comentados) para expansão futura:
+# cosmosqa:
+#   config: "plain_text"
+#   splits:
+#     train: "train"
+#     validation: "validation"
+#     test: "test"
+# dream:
+#   config: "plain_text"
+#   splits:
+#     train: "train"
+#     validation: "validation"
+#     test: "test"
+# mctest:
+#   config: "MCTest"
+#   splits:
+#     train: "train"
+#     validation: "validation"
+#     test: "test"
+# mcscript:
+#   config: "plain_text"
+#   splits:
+#     train: "train"
+#     validation: "validation"
+#     test: "test"
+# quail:
+#   config: "default"
+#   splits:
+#     train: "train"
+#     validation: "validation"
+#     test: "test"
+# sciq:
+#   config: "main"
+#   splits:
+#     train: "train"
+#     validation: "validation"
+#     test: "test"
+

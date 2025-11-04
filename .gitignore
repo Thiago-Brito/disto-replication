@@ -1,0 +1,79 @@
+# --- Python básicos ---
+__pycache__/
+*.py[cod]
+*$py.class
+.Python
+
+# Distribuição/instalação
+build/
+dist/
+*.egg-info/
+.eggs/
+pip-wheel-metadata/
+
+# Testes/cobertura/tipos
+.pytest_cache/
+.coverage*
+htmlcov/
+.mypy_cache/
+.pytype/
+.ruff_cache/
+
+# Notebooks
+.ipynb_checkpoints/
+
+# Caches genéricos
+.cache/
+cache/
+
+# Ambientes virtuais
+.venv/
+.venv*/
+env/
+venv/
+
+# IDEs/editores
+.vscode/
+.idea/
+
+# SO (Windows/macOS)
+Thumbs.db
+Desktop.ini
+.DS_Store
+~$*
+*.tmp
+
+# --- Projeto específico (ML) ---
+# Dados e artefatos de processamento
+data/
+
+# Saídas de treino/execução
+runs/
+logs/
+lightning_logs/
+wandb/
+mlruns/
+events.out.tfevents.*
+
+# Checkpoints/Modelos
+*.ckpt
+*.pt
+*.pth
+*.onnx
+*.tflite
+*.bin
+
+# Arquivos derivados comuns
+*.parquet
+*.feather
+*.arrow
+*.npz
+*.npy
+
+# CSVs de predições/relatórios em saídas
+runs/**/*.csv
+
+# Configs locais opcionais
+config/*.local.*
+*.env
+*.env.*
