@@ -28,8 +28,12 @@ Pipeline
 1) Pré-processamento (RACE → Parquet flatten com bons distractors label=1.0)
 
 ```
-python preprocess/prepare_dataset.py --config config/datasets.yaml --out data/processed
+python preprocess/prepare_dataset.py --config config/datasets.yaml --out data/processed --datasets race
 ```
+
+
+
+- Para usar o dataset CSV/PT colocado em `data/pt`, rode `python preprocess/prepare_dataset.py --config config/datasets.yaml --out data/processed --datasets pt_csv`. Somente os datasets listados no parametro `--datasets` sao processados.
 
 2) Negative Sampling (gera dataset com bons + negativos, 4 métodos)
 
@@ -51,8 +55,8 @@ python evaluate_disto.py --ckpt runs/disto-sept/best.ckpt --data data/ns
 
 Arquitetura e arquivos
 
-- `config/datasets.yaml`: configuração dos datasets. Inicialmente inclui RACE (config “all”) com splits. Há placeholders comentados para CosmosQA, DREAM, MCTest, MCScript, Quail, SCIQ com nota de que cada um precisa de um mapper para (article, question, answer, distractors[]).
-- `preprocess/prepare_dataset.py`: carrega RACE (via `datasets.load_dataset("race", "all")`), mapeia para linhas `article, question, answer, distractor, label=1.0` (flatten), valida e salva Parquet por split.
+- `config/datasets.yaml`: configuracao dos datasets. Mantem RACE (config "all") e adiciona `pt_csv`, que aponta para os CSVs em `data/pt` (glob `*_ENUNCIADOS_SEM_IMAGEM.csv`) com `split_ratios` e `seed` para gerar train/val/test. Use `--datasets` para escolher quais preparar.
+- `preprocess/prepare_dataset.py`: carrega o dataset escolhido (`race` via `datasets.load_dataset` ou `pt_csv` lendo CSVs locais), mapeia para linhas `article/question/answer/distractor/label` e salva Parquet por split.
 - `sampling/clustering_features.py`: extrai features POS TF, NER TF e length com spaCy e fornece `fuse_features` para concatenação com o embedding CLS de DistilRoBERTa.
 - `sampling/negative_sampling.py`: gera negativos (4 métodos): Answer Replication, Random (pool global do treino), Farthest in Cluster (KMeans k=200 com features = CLS + POS TF + NER TF + length) e BERT [MASK] filling (troca uma palavra por previsão de MLM). Salva Parquets com bons + negativos.
 - `models/model_sept.py`: implementação do SepT (DistilRoBERTa) que concatena `[QUES] {Q} [ANS] {A} [DIS] {D} [ART] {Ar}` e aplica uma head linear no CLS com sigmoid.

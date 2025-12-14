@@ -16,6 +16,15 @@ race:
     validation: "validation"
     test: "test"
 
+pt_csv:
+  path: "data/pt"
+  file_glob: "*_ENUNCIADOS_SEM_IMAGEM.csv"
+  split_ratios:
+    train: 0.8
+    validation: 0.1
+    test: 0.1
+  seed: 42
+
 # Placeholders (comentados) para expansão futura:
 # cosmosqa:
 #   config: "plain_text"
@@ -53,4 +62,3 @@ race:
 #     train: "train"
 #     validation: "validation"
 #     test: "test"
-
